@@ -14,7 +14,6 @@ const {companyNewSchema, companyUpdateSchema} = require("../schemas");
 /** GET /  =>  {companies: [company, company]}  */
 
 router.get("/", authRequired, async function (req, res, next) {
-  console.log('get all', req.params);
   try {
     const companies = await Company.findAll(req.query);
     return res.json({companies});
@@ -29,7 +28,6 @@ router.get("/", authRequired, async function (req, res, next) {
 /** GET /[handle]  =>  {company: company} */
 
 router.get("/:handle", authRequired, async function (req, res, next) {
-  console.log('get by handle', req.params);
   try {
     const company = await Company.findOne(req.params.handle);
     return res.json({company});

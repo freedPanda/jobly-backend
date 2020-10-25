@@ -40,7 +40,6 @@ router.post("/", async function(req, res, next) {
   try {
     delete req.body._token;
     const validation = validate(req.body, userNewSchema);
-    console.log(req.body,'registerrrrrrrr')
 
     if (!validation.valid) {
       return next({
@@ -92,8 +91,6 @@ router.patch("/:username", ensureCorrectUser, async function(req, res, next) {
 
 router.delete("/:username", ensureCorrectUser, async function(req, res, next) {
   try {
-    console.log('params', req.params);
-    console.log('body',req.query);
     await User.authenticate({
       username: req.params.username,
       password: req.query.password
